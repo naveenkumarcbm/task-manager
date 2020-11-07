@@ -18,42 +18,8 @@ export const initialState = {
   isEdit: false,
   selectedListId: '',
   selectedCard: {},
-  list: [
-    {
-      id: 11,
-      title: 'list 1',
-    },
-    {
-      id: 22,
-      title: 'list 2',
-    },
-    {
-      id: 33,
-      title: 'list 3',
-    },
-  ],
-  cards: [
-    {
-      id: 1,
-      title: 'card 1',
-      listId: 11,
-    },
-    {
-      id: 2,
-      title: 'card 1',
-      listId: 11,
-    },
-    {
-      id: 3,
-      title: 'card 1',
-      listId: 11,
-    },
-    {
-      id: 4,
-      title: 'card 1',
-      listId: 22,
-    },
-  ],
+  list: [],
+  cards: []
 };
 
 const suffleCard = (state, action) => {

@@ -64,7 +64,7 @@ function App() {
                       <Card key={'card_' + cd.id} item={cd} />
                     ))}
                   <div>
-                    <Button onClick={() => createCard(ls.id)}>Add Card</Button>
+                    <Button onClick={() => createCard(ls.id)}>Add new task</Button>
                   </div>
                 </List>
               </>
@@ -77,7 +77,7 @@ function App() {
         <Modal isOpen={showModal}>
           <Form
             fields={cardFields}
-            title={isEdit ? 'Edit Card' : 'Create Card'}
+            title={isEdit ? 'Edit Task' : 'Create Task'}
           />
         </Modal>
       </DndProvider>

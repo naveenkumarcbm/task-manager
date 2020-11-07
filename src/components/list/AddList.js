@@ -16,13 +16,13 @@ const AddList = () => {
   return (
     <>
       {isAdd ? (
-        <div>
+        <form onSubmit={addNew}>
           <Input
             placeholder='List Name'
             onChange={(e) => setTitle(e.target.value)}
           />
           <Button className="btn-list" disabled={title === ''} onClick={addNew}>Save List</Button>
-        </div>
+        </form>
       ) : (
         <Button className="btn-list" onClick={() => setIsAdd(!isAdd)}>Add List</Button>
       )}

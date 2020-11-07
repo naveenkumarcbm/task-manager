@@ -40,7 +40,7 @@
     return (
       <div>
         <Title>{title}</Title>
-        <form ref={ref}>
+        <form ref={ref} onSubmit={onSave}>
           {fields.map((fld, i) => (
             <Renderfield
               key={'fld_' + i}
