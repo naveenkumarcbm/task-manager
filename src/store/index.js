@@ -26,16 +26,22 @@ export const initialState = {
 const movaCard = (state, action) => {
   const { cards } = state;
   const { payload } = action;
-  const { hoverIndex, item, listId } = payload;
+  const { item, data } = payload; // data - hovered data
   let _cards = [...cards];
   let _item = {...item};
 
-  let itmIndx = _cards.findIndex(cd => cd.id === _item.id);
-  _cards.splice(itmIndx, 1);
+  let drgIdx = _cards.findIndex(cd => cd.id === _item.id);
+  let drpIdx = _cards.findIndex(cd => cd.id === data.id);
 
-  _item.listId = listId;
+  _cards.splice(drgIdx, 1, data);
+  _cards.splice(drpIdx, 1, _item);
 
-  _cards.splice((hoverIndex === itmIndx)? hoverIndex+1 : hoverIndex , 0, _item);
+  // _cards.splice(drpIdx, 1, _item);
+  // _cards.splice(drgIdx, 1, data);
+
+  // _item.listId = listId;
+
+  // _cards.splice((hoverIndex === itmIndx)? hoverIndex+1 : hoverIndex , 0, _item);
   return { ...state, ...{ cards: _cards } };
 };
 

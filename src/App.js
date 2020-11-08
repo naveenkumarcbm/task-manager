@@ -62,7 +62,7 @@ function App() {
                     .map((cd, i) => (
                       <Card
                         key={'card_' + cd.id}
-                        item={cd}
+                        data={cd}
                         index={i}
                         listId={ls.id}
                       />

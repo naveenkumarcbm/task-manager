@@ -2,7 +2,11 @@ import { useState, useContext, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import styled from 'styled-components';
 import { AppContext } from '../../store';
-import { removeSelectedCard, editcard, moveSelectedCard } from '../../store/actions';
+import {
+  removeSelectedCard,
+  editcard,
+  moveSelectedCard,
+} from '../../store/actions';
 import { Title } from '../../styled';
 
 const CardDescription = styled.div`
@@ -12,13 +16,12 @@ const CardDescription = styled.div`
   text-overflow: ellipsis;
 `;
 
-const Card = ({ item, index, moveCard, listId }) => {
-
-  const [dropData, setDropData] = useState({})
+const Card = ({ data, index, listId }) => {
+  const [dropData, setDropData] = useState({});
 
   const { dispatch } = useContext(AppContext);
   const [{ isDragging }, drag] = useDrag({
-    item: { type: 'CARD', ...item, index },
+    item: { type: 'CARD', ...data, index },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -36,22 +39,24 @@ const Card = ({ item, index, moveCard, listId }) => {
       if (dragIndex === hoverIndex) {
         return;
       }
-      setDropData(({item, hoverIndex, listId}));
+      setDropData({ item, hoverIndex, data, listId });
     },
-    // canDrop:  
+    // canDrop:
     drop: (item, monitor) => {
-      dispatch(moveSelectedCard(dropData))
-    }
+      if ( dropData.item &&  dropData.item.listId === listId) {
+        dispatch(moveSelectedCard(dropData));
+      }
+    },
   });
 
-  const { title, description } = item;
+  const { title, description } = data;
   const opacity = isDragging ? 0.4 : 1;
   const removeCard = () => {
-    dispatch(removeSelectedCard(item));
+    dispatch(removeSelectedCard(data));
   };
 
   const editCard = () => {
-    dispatch(editcard(item));
+    dispatch(editcard(data));
   };
 
   drag(drop(ref));
