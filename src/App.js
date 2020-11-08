@@ -33,11 +33,9 @@ function App() {
 
   const removeSelectedList = (ls) => {
     dispatch(removeList(ls));
-    console.log(ls);
   };
 
   const { list, cards, showModal, isEdit } = state;
-  console.log('rendered cards', cards)
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       <DndProvider backend={HTML5Backend}>

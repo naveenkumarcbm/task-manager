@@ -40,7 +40,6 @@ const Card = ({ item, index, moveCard, listId }) => {
     },
     // canDrop:  
     drop: (item, monitor) => {
-      console.log(dropData, listId)
       dispatch(moveSelectedCard(dropData))
     }
   });
