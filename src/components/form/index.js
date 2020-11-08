@@ -30,7 +30,7 @@
 
     const onChange = (e) => {
       dispatch(onInputChange(e));
-      if (ref.current.checkValidity && ref.current.checkValidity()) {
+      if (ref.current?.checkValidity()) {
         setValid(true);
       } else {
         setValid(false);

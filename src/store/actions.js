@@ -1,5 +1,6 @@
 export const ADD_CARD = 'ADD_CARD';
-export const SUFFLE_CARD = 'SUFFLE_CARD';
+export const SUFFLE_CARD = 'SUFFLE_CARD'; //Across list
+export const MOVE_CARD = 'MOVE_CARD'; ///with in list - sorting
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const TEXT_CHANGE = 'TEXT_CHANGE';
@@ -24,6 +25,7 @@ export const closeModal = () => ({
 });
 
 export const suffleSelectedCard = payload => ({ type: SUFFLE_CARD, payload });
+export const moveSelectedCard = payload => ({ type: MOVE_CARD, payload });
 export const removeSelectedCard = payload => ({ type: REMOVE_CARD, payload });
 
 export const selectedListId = listId => ({ type: SELECTED_LIST, payload: {selectedListId: listId}});

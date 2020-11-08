@@ -19,6 +19,7 @@ const AddList = () => {
         <form onSubmit={addNew}>
           <Input
             placeholder='List Name'
+            autoFocus={true}
             onChange={(e) => setTitle(e.target.value)}
           />
           <Button className="btn-list" disabled={title === ''} onClick={addNew}>Save List</Button>

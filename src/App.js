@@ -13,6 +13,7 @@ const cardFields = [
     type: 'text',
     placeholder: 'Card title',
     name: 'title',
+    autoFocus: true,
     required: true,
   },
   {
@@ -30,13 +31,13 @@ function App() {
     dispatch(selectedListId(listId));
   };
 
-  const removeSelectedList = ls => {
-    dispatch(removeList(ls))
-    console.log(ls)
-  }
+  const removeSelectedList = (ls) => {
+    dispatch(removeList(ls));
+    console.log(ls);
+  };
 
   const { list, cards, showModal, isEdit } = state;
-
+  console.log('rendered cards', cards)
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       <DndProvider backend={HTML5Backend}>
@@ -55,16 +56,23 @@ function App() {
                     {ls.title}
                     <ion-icon
                       name='close-outline'
-                      onClick={() =>removeSelectedList(ls)} 
+                      onClick={() => removeSelectedList(ls)}
                     ></ion-icon>
                   </ListTitle>
                   {cards
                     .filter((crd) => crd.listId === ls.id)
-                    .map((cd) => (
-                      <Card key={'card_' + cd.id} item={cd} />
+                    .map((cd, i) => (
+                      <Card
+                        key={'card_' + cd.id}
+                        item={cd}
+                        index={i}
+                        listId={ls.id}
+                      />
                     ))}
                   <div>
-                    <Button onClick={() => createCard(ls.id)}>Add new task</Button>
+                    <Button onClick={() => createCard(ls.id)}>
+                      Add new task
+                    </Button>
                   </div>
                 </List>
               </>
@@ -74,7 +82,7 @@ function App() {
             </div>
           </Container>
         </Board>
-        <Modal isOpen={showModal}>
+        <Modal isOpen={showModal} ariaHideApp={false}>
           <Form
             fields={cardFields}
             title={isEdit ? 'Edit Task' : 'Create Task'}

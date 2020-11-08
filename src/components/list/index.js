@@ -8,14 +8,16 @@ const List = ({ children, listId }) => {
   const [, drop] = useDrop({
     accept: 'CARD',
     drop: (item) => {
-      let _obj = { ...item };
-      _obj.listId = listId;
-      dispatch(suffleSelectedCard(_obj));
+      if(item.listId !== listId) {
+        let _obj = { ...item };
+        _obj.listId = listId;
+        dispatch(suffleSelectedCard(_obj));
+      }
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
-    }),
+    })
   });
 
   return (
